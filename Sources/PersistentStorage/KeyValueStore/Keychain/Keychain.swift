@@ -24,7 +24,6 @@ import Security
 /// ))
 /// ```
 public enum Keychain {
-
     // MARK: - Accessibility
 
     /// Controls when a keychain item's data can be accessed.
@@ -57,15 +56,15 @@ public enum Keychain {
         var cfValue: CFString {
             switch self {
             case .whenUnlocked:
-                return kSecAttrAccessibleWhenUnlocked
+                kSecAttrAccessibleWhenUnlocked
             case .afterFirstUnlock:
-                return kSecAttrAccessibleAfterFirstUnlock
+                kSecAttrAccessibleAfterFirstUnlock
             case .whenUnlockedThisDeviceOnly:
-                return kSecAttrAccessibleWhenUnlockedThisDeviceOnly
+                kSecAttrAccessibleWhenUnlockedThisDeviceOnly
             case .afterFirstUnlockThisDeviceOnly:
-                return kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly
+                kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly
             case .whenPasscodeSetThisDeviceOnly:
-                return kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly
+                kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly
             }
         }
     }

@@ -29,7 +29,6 @@ import Security
 /// ``DataStoreConfiguration/keychain(service:accessGroup:accessibility:authenticationPolicy:synchronizable:)``
 /// which constructs the appropriate `KeychainDataStore` internally.
 final class KeychainDataStore: PersistentKeyDataStore, Sendable {
-
     // MARK: - Configuration
 
     private let service: String
@@ -189,6 +188,7 @@ final class KeychainDataStore: PersistentKeyDataStore, Sendable {
                 let error = cfError?.takeRetainedValue()
                 throw KeychainError.accessControlCreationFailed(underlying: error)
             }
+
             attrs[kSecAttrAccessControl] = accessControl
             // Do NOT also set kSecAttrAccessible when kSecAttrAccessControl is present.
         } else {

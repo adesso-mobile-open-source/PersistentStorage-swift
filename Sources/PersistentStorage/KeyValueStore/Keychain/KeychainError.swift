@@ -36,7 +36,6 @@ import Security
 /// }
 /// ```
 public enum KeychainError: Error, Sendable {
-
     /// The item already exists in the keychain (`errSecDuplicateItem`, -25299).
     ///
     /// Typically indicates a logic error — ``KeychainDataStore`` uses an upsert pattern
@@ -133,7 +132,6 @@ public enum KeychainError: Error, Sendable {
     init(status: OSStatus) {
         self = Self.knownStatuses[status] ?? .unknown(status)
     }
-
 }
 
 // MARK: - LocalizedError
@@ -170,12 +168,12 @@ extension KeychainError: LocalizedError {
             return "The app is missing a required keychain entitlement. Check the Keychain Sharing capability and provisioning profile."
         case .decode:
             return "The keychain item data could not be decoded. It may be corrupted or written by an incompatible app version."
-        case .accessControlCreationFailed(let underlying):
+        case let .accessControlCreationFailed(underlying):
             if let msg = underlying.map({ $0.localizedDescription }) {
                 return "Failed to create access control for the keychain item: \(msg)"
             }
             return "Failed to create access control for the keychain item."
-        case .unknown(let status):
+        case let .unknown(status):
             return SecCopyErrorMessageString(status, nil) as String?
                 ?? "An unknown Security framework error occurred (OSStatus \(status))."
         }

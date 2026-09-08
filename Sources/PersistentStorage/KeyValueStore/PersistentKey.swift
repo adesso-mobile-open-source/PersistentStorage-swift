@@ -68,7 +68,6 @@
 /// If migration is necessary, read from the old key, write to the new key, then delete the
 /// old entry.
 public struct PersistentKey: RawRepresentable, ExpressibleByStringLiteral, Equatable, Hashable {
-
     // MARK: - RawRepresentable
 
     /// The raw string identifier that backs this key.
