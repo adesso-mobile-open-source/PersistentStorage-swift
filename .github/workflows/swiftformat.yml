@@ -6,4 +6,4 @@ on:
 jobs:
   swiftformat-apply:
     permissions: { contents: write, pull-requests: write }
-    uses: adesso-mobile-open-source/workflows-swift/.github/workflows/swiftformat-apply.yml@v1.0.3
+    uses: adesso-mobile-open-source/workflows-swift/.github/workflows/swiftformat-apply.yml@main
