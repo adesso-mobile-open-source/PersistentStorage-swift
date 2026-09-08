@@ -1,0 +1,9 @@
+name: SwiftFormat Apply
+on:
+  schedule:
+    - cron: "0 6 * * 1" # weekly, Monday 06:00 UTC
+  workflow_dispatch: {}
+jobs:
+  swiftformat-apply:
+    permissions: { contents: write, pull-requests: write }
+    uses: adesso-mobile-open-source/workflows-swift/.github/workflows/swiftformat-apply.yml@v1.0.3

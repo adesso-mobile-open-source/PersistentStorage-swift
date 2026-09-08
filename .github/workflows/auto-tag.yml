@@ -1,0 +1,10 @@
+name: Auto Tag
+on:
+  pull_request:
+    types: [closed]
+    branches: [main]
+jobs:
+  tag:
+    permissions: { contents: write }
+    uses: adesso-mobile-open-source/workflows-swift/.github/workflows/auto-tag.yml@v1.0.3
+    secrets: inherit
