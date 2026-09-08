@@ -1,0 +1,24 @@
+{
+  "originHash" : "82e15377cecd385bc571b545c6c4e4e04d572df284839e0c14162268eba79bc7",
+  "pins" : [
+    {
+      "identity" : "swift-spyable",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Matejkob/swift-spyable",
+      "state" : {
+        "revision" : "5ee55d370fcbd1c4f5f29932876799c16e9647c4",
+        "version" : "0.9.0"
+      }
+    },
+    {
+      "identity" : "swift-syntax",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/swiftlang/swift-syntax",
+      "state" : {
+        "revision" : "f99ae8aa18f0cf0d53481901f88a0991dc3bd4a2",
+        "version" : "601.0.1"
+      }
+    }
+  ],
+  "version" : 3
+}
