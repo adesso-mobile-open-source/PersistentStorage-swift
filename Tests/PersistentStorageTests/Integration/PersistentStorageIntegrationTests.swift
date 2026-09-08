@@ -2,7 +2,11 @@
 //  PersistentStorage
 //
 //  Created by Holloh, Niklas on 22.08.25 for adesso SE.
-//  Copyright © 2025 adesso SE. All rights reserved.
+//  Copyright 2025 adesso SE
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//  http://www.apache.org/licenses/LICENSE-2.0
 //
 
 import Foundation
@@ -47,7 +51,7 @@ struct PersistentStorageIntegrationTests {
     // MARK: - UserDefaults Integration Tests
 
     @Test
-    func `UserDefaults stores and retrieves complex objects`() throws {
+    func `userDefaults stores and retrieves complex objects`() throws {
         // Given
         let store = createUserDefaultsKeyValueStore()
         let user = User(id: UUID().uuidString, name: "John Doe", age: 30, isActive: true)
@@ -184,7 +188,7 @@ struct PersistentStorageIntegrationTests {
     func `raw data operations and typed operations work alongside each other`() throws {
         // Given
         let store = createUserDefaultsKeyValueStore()
-        let rawData = "raw test data".data(using: .utf8)!
+        let rawData = Data("raw test data".utf8)
         let user = User(id: "123", name: "Test User", age: 30, isActive: true)
 
         // When

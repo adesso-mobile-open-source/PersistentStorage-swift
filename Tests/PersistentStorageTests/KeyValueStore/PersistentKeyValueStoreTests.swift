@@ -2,7 +2,11 @@
 //  PersistentStorage
 //
 //  Created by Holloh, Niklas on 22.08.25 for adesso SE.
-//  Copyright © 2025 adesso SE. All rights reserved.
+//  Copyright 2025 adesso SE
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//  http://www.apache.org/licenses/LICENSE-2.0
 //
 
 import Foundation
@@ -19,7 +23,7 @@ struct PersistentKeyValueStoreTests {
     // see the integration tests which use real encoder/decoder implementations.
 
     @Test
-    func `PersistentKeyValueStoreImpl initializes encoder and decoder when created with a data store`() throws {
+    func `persistentKeyValueStoreImpl initializes encoder and decoder when created with a data store`() throws {
         // Given
         let mockDataStore = PersistentKeyDataStoreSpy()
 
@@ -55,7 +59,7 @@ struct PersistentKeyValueStoreTests {
         let mockDataStore = PersistentKeyDataStoreSpy()
         let keyValueStore = PersistentKeyValueStoreImpl(dataStore: mockDataStore)
         let testKey: PersistentKey = "test_key"
-        let testData = "test data".data(using: .utf8)!
+        let testData = Data("test data".utf8)
 
         mockDataStore.getDataForReturnValue = testData
 
@@ -94,7 +98,7 @@ struct PersistentKeyValueStoreTests {
 
         let testKey: PersistentKey = "test_key"
         let testValue = "John" // Using string for mock decoder
-        let testData = "test data".data(using: .utf8)!
+        let testData = Data("test data".utf8)
 
         mockDataStore.getDataForReturnValue = testData
         mockDecoder.decodeFromReturnValue = testValue
@@ -135,7 +139,7 @@ struct PersistentKeyValueStoreTests {
         let mockDataStore = PersistentKeyDataStoreSpy()
         let keyValueStore = PersistentKeyValueStoreImpl(dataStore: mockDataStore)
         let testKey: PersistentKey = "test_key"
-        let testData = "test data".data(using: .utf8)!
+        let testData = Data("test data".utf8)
 
         // When
         try keyValueStore.set(data: testData, for: testKey)
@@ -155,7 +159,7 @@ struct PersistentKeyValueStoreTests {
 
         let testKey: PersistentKey = "test_key"
         let testValue = "John" // Using string for mock encoder
-        let encodedData = "encoded data".data(using: .utf8)!
+        let encodedData = Data("encoded data".utf8)
 
         mockEncoder.encodeReturnValue = encodedData
 
@@ -205,7 +209,7 @@ struct PersistentKeyValueStoreTests {
     }
 
     @Test
-    func `PersistentKeyValueStore protocol methods are available and delegate correctly`() throws {
+    func `persistentKeyValueStore protocol methods are available and delegate correctly`() throws {
         // Given
         let mockDataStore = PersistentKeyDataStoreSpy()
         let keyValueStore: PersistentKeyValueStore = PersistentKeyValueStoreImpl(dataStore: mockDataStore)
@@ -217,7 +221,7 @@ struct PersistentKeyValueStoreTests {
         #expect(keyValueStore.contains(valueFor: "test") == false)
         #expect(try keyValueStore.get(dataFor: "test") == nil)
 
-        let testData = "test".data(using: .utf8)!
+        let testData = Data("test".utf8)
         try keyValueStore.set(data: testData, for: "test")
         try keyValueStore.remove(valueFor: "test")
 

@@ -2,7 +2,11 @@
 //  PersistentStorage
 //
 //  Created by Holloh, Niklas on 22.08.25 for adesso SE.
-//  Copyright © 2025 adesso SE. All rights reserved.
+//  Copyright 2025 adesso SE
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//  http://www.apache.org/licenses/LICENSE-2.0
 //
 
 import Foundation
@@ -21,7 +25,8 @@ import Security
 /// existential (`any PersistentKeyDataStore`), so the heap indirection is unavoidable
 /// regardless of whether the underlying type is a class or struct.
 ///
-/// Clients never interact with this type directly — they use ``DataStoreConfiguration/keychain(service:accessGroup:accessibility:authenticationPolicy:synchronizable:)``
+/// Clients never interact with this type directly — they use
+/// ``DataStoreConfiguration/keychain(service:accessGroup:accessibility:authenticationPolicy:synchronizable:)``
 /// which constructs the appropriate `KeychainDataStore` internally.
 final class KeychainDataStore: PersistentKeyDataStore, Sendable {
 
@@ -143,9 +148,9 @@ final class KeychainDataStore: PersistentKeyDataStore, Sendable {
     /// via ``buildWriteAttributes(for:data:)``.
     private func baseQuery(for key: String) -> [CFString: Any] {
         var query: [CFString: Any] = [
-            kSecClass:       kSecClassGenericPassword,
+            kSecClass: kSecClassGenericPassword,
             kSecAttrService: service,
-            kSecAttrAccount: key,
+            kSecAttrAccount: key
         ]
         if let accessGroup {
             query[kSecAttrAccessGroup] = accessGroup

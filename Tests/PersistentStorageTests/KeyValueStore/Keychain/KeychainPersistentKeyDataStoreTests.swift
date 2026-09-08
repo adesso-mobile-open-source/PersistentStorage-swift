@@ -2,7 +2,11 @@
 //  PersistentStorage
 //
 //  Created by Holloh, Niklas on 22.08.25 for adesso SE.
-//  Copyright © 2025 adesso SE. All rights reserved.
+//  Copyright 2025 adesso SE
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//  http://www.apache.org/licenses/LICENSE-2.0
 //
 
 // Keychain unit tests are defined below but are disabled via a compile-time flag because
@@ -94,7 +98,7 @@ struct KeychainDataStoreTests {
     func `get returns the data that was set`() throws {
         let store = makeStore()
         let key: PersistentKey = "keychain_get_roundtrip"
-        let payload = "hello keychain".data(using: .utf8)!
+        let payload = Data("hello keychain".utf8)
         defer { cleanup(store: store, keys: [key]) }
 
         try store.set(data: payload, for: key)
@@ -159,7 +163,7 @@ struct KeychainDataStoreTests {
     func `set is repeatable with the same data`() throws {
         let store = makeStore()
         let key: PersistentKey = "keychain_set_idempotent"
-        let payload = "idempotent".data(using: .utf8)!
+        let payload = Data("idempotent".utf8)
         defer { cleanup(store: store, keys: [key]) }
 
         try store.set(data: payload, for: key)
@@ -197,8 +201,8 @@ struct KeychainDataStoreTests {
         let keyB: PersistentKey = "keychain_multi_b"
         defer { cleanup(store: store, keys: [keyA, keyB]) }
 
-        let payloadA = "alpha".data(using: .utf8)!
-        let payloadB = "beta".data(using: .utf8)!
+        let payloadA = Data("alpha".utf8)
+        let payloadB = Data("beta".utf8)
 
         try store.set(data: payloadA, for: keyA)
         try store.set(data: payloadB, for: keyB)

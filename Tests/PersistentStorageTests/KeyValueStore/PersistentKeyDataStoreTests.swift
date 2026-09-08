@@ -2,7 +2,11 @@
 //  PersistentStorage
 //
 //  Created by Holloh, Niklas on 22.08.25 for adesso SE.
-//  Copyright © 2025 adesso SE. All rights reserved.
+//  Copyright 2025 adesso SE
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//  http://www.apache.org/licenses/LICENSE-2.0
 //
 
 import Foundation
@@ -16,11 +20,11 @@ struct PersistentKeyDataStoreTests {
     // to test implementations that depend on PersistentKeyDataStore
 
     @Test
-    func `PersistentKeyDataStore protocol provides contains/get/set/remove methods`() throws {
+    func `persistentKeyDataStore protocol provides contains/get/set/remove methods`() throws {
         // Given
         let mockDataStore = PersistentKeyDataStoreSpy()
         let testKey: PersistentKey = "test_key"
-        let testData = "test data".data(using: .utf8)!
+        let testData = Data("test data".utf8)
 
         // Configure spy behavior
         mockDataStore.containsDataForReturnValue = true
@@ -62,7 +66,7 @@ struct PersistentKeyDataStoreTests {
         // Given
         let mockDataStore = PersistentKeyDataStoreSpy()
         let testKey: PersistentKey = "signature_test"
-        let testData = "signature data".data(using: .utf8)!
+        let testData = Data("signature data".utf8)
 
         mockDataStore.getDataForReturnValue = testData
 
@@ -79,7 +83,7 @@ struct PersistentKeyDataStoreTests {
         // Given
         let mockDataStore = PersistentKeyDataStoreSpy()
         let testKey: PersistentKey = "signature_test"
-        let testData = "signature data".data(using: .utf8)!
+        let testData = Data("signature data".utf8)
 
         // When
         try mockDataStore.set(data: testData, for: testKey)
@@ -109,7 +113,7 @@ struct PersistentKeyDataStoreTests {
         // Given
         let mockDataStore = PersistentKeyDataStoreSpy()
         let keys: [PersistentKey] = ["key1", "key2", "key3"]
-        let data = "test data".data(using: .utf8)!
+        let data = Data("test data".utf8)
 
         mockDataStore.containsDataForReturnValue = true
         mockDataStore.getDataForReturnValue = data

@@ -2,7 +2,11 @@
 //  PersistentStorage
 //
 //  Created by Holloh, Niklas on 22.08.25 for adesso SE.
-//  Copyright © 2025 adesso SE. All rights reserved.
+//  Copyright 2025 adesso SE
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//  http://www.apache.org/licenses/LICENSE-2.0
 //
 
 import Foundation
@@ -107,23 +111,27 @@ public enum KeychainError: Error, Sendable {
 
     // MARK: - Internal factory
 
+    /// Maps a raw `OSStatus` code to its corresponding non-associated-value ``KeychainError``
+    /// case. Kept as a lookup table (rather than a single large `switch`) to keep
+    /// ``init(status:)``'s cyclomatic complexity low.
+    private static let knownStatuses: [OSStatus: KeychainError] = [
+        errSecDuplicateItem: .duplicateItem,
+        errSecItemNotFound: .itemNotFound,
+        errSecInteractionNotAllowed: .interactionNotAllowed,
+        errSecUserCanceled: .userCanceled,
+        errSecAuthFailed: .authFailed,
+        errSecNoDefaultKeychain: .noDefaultKeychain,
+        errSecUnimplemented: .unimplemented,
+        errSecParam: .invalidParam,
+        errSecAllocate: .memoryAllocation,
+        errSecNotAvailable: .notAvailable,
+        errSecMissingEntitlement: .missingEntitlement,
+        errSecDecode: .decode
+    ]
+
     /// Creates a ``KeychainError`` from a raw `OSStatus` code.
     init(status: OSStatus) {
-        switch status {
-        case errSecDuplicateItem:         self = .duplicateItem
-        case errSecItemNotFound:          self = .itemNotFound
-        case errSecInteractionNotAllowed: self = .interactionNotAllowed
-        case errSecUserCanceled:          self = .userCanceled
-        case errSecAuthFailed:            self = .authFailed
-        case errSecNoDefaultKeychain:     self = .noDefaultKeychain
-        case errSecUnimplemented:         self = .unimplemented
-        case errSecParam:                 self = .invalidParam
-        case errSecAllocate:              self = .memoryAllocation
-        case errSecNotAvailable:          self = .notAvailable
-        case errSecMissingEntitlement:    self = .missingEntitlement
-        case errSecDecode:                self = .decode
-        default:                          self = .unknown(status)
-        }
+        self = Self.knownStatuses[status] ?? .unknown(status)
     }
 
 }
