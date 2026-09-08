@@ -4,7 +4,7 @@ import PackageDescription
 
 let package = Package(
     name: "PersistentStorage",
-    platforms: [.iOS("16.4"), .macOS(.v13)],
+    platforms: [.iOS(.v16), .macOS(.v13), .tvOS(.v16), .visionOS(.v1), .watchOS(.v9)],
     products: [
         .library(
             name: "PersistentStorage",
