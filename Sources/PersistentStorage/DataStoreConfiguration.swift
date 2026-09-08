@@ -53,8 +53,7 @@ import Foundation
 /// var store = PersistentKeyValueStoreImpl(dataStore: .custom(myStore))
 /// ```
 public struct DataStoreConfiguration {
-
-    // The extracted data store — package-internal, not part of the public API.
+    /// The extracted data store — package-internal, not part of the public API.
     let dataStore: any PersistentKeyDataStore
 
     // MARK: - Keychain

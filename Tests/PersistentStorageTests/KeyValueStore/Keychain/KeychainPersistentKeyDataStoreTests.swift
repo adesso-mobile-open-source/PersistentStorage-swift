@@ -23,12 +23,11 @@ import Foundation
 @testable import PersistentStorage
 import Testing
 
-// A unique service name per test run so parallel runs don't interfere.
+/// A unique service name per test run so parallel runs don't interfere.
 private let testService = "com.adesso.PersistentStorageTests.\(UUID().uuidString)"
 
 @Suite("KeychainDataStore Tests", .serialized)
 struct KeychainDataStoreTests {
-
     // Helper: a fresh store with the shared test service and default accessibility.
     private func makeStore(
         accessibility: Keychain.Accessibility = .whenUnlockedThisDeviceOnly,

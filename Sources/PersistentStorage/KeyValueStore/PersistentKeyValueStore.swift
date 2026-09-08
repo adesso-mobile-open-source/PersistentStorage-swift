@@ -222,12 +222,12 @@ public final class PersistentKeyValueStoreImpl: PersistentKeyValueStore {
     ///     factory functions (`.keychain(...)`, `.userDefaults(...)`, `.custom(...)`).
     ///   - encoder: An encoder conforming to ``AnyEncoder`` (which refines `Sendable`). Defaults to `JSONEncoder`.
     ///   - decoder: A decoder conforming to ``AnyDecoder`` (which refines `Sendable`). Defaults to `JSONDecoder`.
-    public init<E: AnyEncoder, D: AnyDecoder>(
-        dataStore configuration: consuming DataStoreConfiguration,
-        encoder: E = JSONEncoder(),
-        decoder: D = JSONDecoder()
+    public init(
+        dataStore configuration: DataStoreConfiguration,
+        encoder: some AnyEncoder = JSONEncoder(),
+        decoder: some AnyDecoder = JSONDecoder()
     ) {
-        self.dataStore = configuration.dataStore
+        dataStore = configuration.dataStore
         self.encoder = encoder
         self.decoder = decoder
     }
@@ -242,10 +242,10 @@ public final class PersistentKeyValueStoreImpl: PersistentKeyValueStore {
     ///   - dataStore: Any ``PersistentKeyDataStore``-conforming value.
     ///   - encoder: A `Sendable` encoder. Defaults to `JSONEncoder`.
     ///   - decoder: A `Sendable` decoder. Defaults to `JSONDecoder`.
-    init<E: AnyEncoder, D: AnyDecoder>(
+    init(
         dataStore: any PersistentKeyDataStore,
-        encoder: E = JSONEncoder(),
-        decoder: D = JSONDecoder()
+        encoder: some AnyEncoder = JSONEncoder(),
+        decoder: some AnyDecoder = JSONDecoder()
     ) {
         self.dataStore = dataStore
         self.encoder = encoder
