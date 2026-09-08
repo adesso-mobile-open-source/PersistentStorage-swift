@@ -15,7 +15,7 @@ import PackageDescription
 
 let package = Package(
     name: "PersistentStorage",
-    platforms: [.iOS(.v16), .macOS(.v13), .tvOS(.v16), .visionOS(.v1), .watchOS(.v9)],
+    platforms: [.iOS(.v16), .macOS(.v13), .tvOS(.v18), .visionOS(.v1), .watchOS(.v11)],
     products: [
         .library(
             name: "PersistentStorage",
